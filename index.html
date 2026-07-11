@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Skylark Se</title>
+
+<!-- Replace "web-icon" with the final Skylark Se icon URL -->
+<link rel="icon" type="image/png" href="web-icon">
+<link rel="apple-touch-icon" href="web-icon">
+
+<style>
+:root {
+    color-scheme: light dark;
+
+    --background: #f2f2f7;
+    --card: rgba(255, 255, 255, 0.88);
+    --text: #1c1c1e;
+    --secondary-text: #6e6e73;
+    --border: rgba(60, 60, 67, 0.15);
+
+    --accent: #007aff;
+    --accent-hover: #0066d6;
+
+    --coming-soon-background: #e5e5ea;
+    --coming-soon-text: #6e6e73;
+
+    --shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #000000;
+        --card: rgba(28, 28, 30, 0.92);
+        --text: #f5f5f7;
+        --secondary-text: #98989d;
+        --border: rgba(84, 84, 88, 0.65);
+
+        --accent: #0a84ff;
+        --accent-hover: #409cff;
+
+        --coming-soon-background: #2c2c2e;
+        --coming-soon-text: #98989d;
+
+        --shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding:
+        calc(30px + env(safe-area-inset-top))
+        18px
+        calc(25px + env(safe-area-inset-bottom));
+
+    background: var(--background);
+    color: var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+.page {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+header {
+    padding: 28px 8px 30px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #54a8ff,
+            #007aff
+        );
+
+    color: white;
+
+    font-size: 31px;
+    font-weight: 750;
+    letter-spacing: -1.5px;
+
+    box-shadow:
+        0 12px 28px
+        rgba(0, 122, 255, 0.3);
+}
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    max-width: 500px;
+
+    margin:
+        14px auto
+        0;
+
+    color: var(--secondary-text);
+
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.card {
+    margin-bottom: 18px;
+    padding: 25px;
+
+    overflow: hidden;
+
+    background: var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 25px;
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+.card h2 {
+    margin:
+        0
+        0
+        10px;
+
+    font-size: 23px;
+    letter-spacing: -0.6px;
+}
+
+.card p {
+    margin: 0;
+
+    color: var(--secondary-text);
+
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.version {
+    display: inline-flex;
+
+    margin-bottom: 16px;
+    padding: 7px 12px;
+
+    border-radius: 100px;
+
+    background:
+        rgba(0, 122, 255, 0.12);
+
+    color: var(--accent);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    color: var(--secondary-text);
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #ff9f0a;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(255, 159, 10, 0.13);
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    margin-top: 22px;
+    padding: 15px 20px;
+
+    border-radius: 15px;
+
+    background: var(--accent);
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: 650;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.button:hover {
+    background: var(--accent-hover);
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.coming-soon {
+    background:
+        var(--coming-soon-background);
+
+    color:
+        var(--coming-soon-text);
+
+    cursor: not-allowed;
+}
+
+.coming-soon:hover {
+    background:
+        var(--coming-soon-background);
+}
+
+.edition-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap: 14px;
+
+    margin-top: 20px;
+}
+
+.edition {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 190px;
+
+    padding: 20px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 20px;
+
+    background:
+        rgba(120, 120, 128, 0.07);
+}
+
+.edition h3 {
+    margin:
+        0
+        0
+        7px;
+
+    font-size: 21px;
+    letter-spacing: -0.4px;
+}
+
+.edition p {
+    flex: 1;
+
+    font-size: 14px;
+}
+
+.edition .button {
+    margin-top: 18px;
+    padding: 12px;
+
+    border-radius: 13px;
+
+    font-size: 15px;
+}
+
+.note {
+    margin-top: 18px;
+
+    color: var(--secondary-text);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+footer {
+    padding:
+        22px
+        10px
+        5px;
+
+    color: var(--secondary-text);
+
+    font-size: 13px;
+    text-align: center;
+}
+
+@media (max-width: 560px) {
+    body {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    header {
+        padding-top: 18px;
+    }
+
+    .card {
+        padding: 21px;
+
+        border-radius: 22px;
+    }
+
+    .edition-list {
+        grid-template-columns: 1fr;
+    }
+
+    .edition {
+        min-height: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+<header>
+
+<div class="logo">
+Se
+</div>
+
+<h1>
+Skylark Se
+</h1>
+
+<p class="subtitle">
+Skylark for devices running
+iOS or iPadOS 14.
+</p>
+
+</header>
+
+
+<section class="card">
+
+<span class="version">
+iOS &amp; iPadOS 14.3–14.8.1
+</span>
+
+<h2>
+Coming Soon
+</h2>
+
+<p>
+Skylark Se is made for compatible
+iPhone and iPad devices running
+iOS or iPadOS 14.3 through 14.8.1.
+</p>
+
+<div class="status">
+
+<span class="status-dot"></span>
+
+Not currently available
+
+</div>
+
+
+<!--
+Replace the placeholder URL below
+when Skylark Se becomes available.
+-->
+
+<a
+class="button coming-soon"
+href="https://example.com/SkylarkSe"
+aria-label="Skylark Se is coming soon"
+onclick="return false;"
+>
+
+Coming Soon
+
+</a>
+
+
+<p class="note">
+
+The download button will become
+available when Skylark Se is released.
+
+</p>
+
+</section>
+
+
+<section class="card">
+
+<h2>
+Using a newer version?
+</h2>
+
+<p>
+
+Your Skylark edition depends on the
+version of iOS or iPadOS installed
+on your device.
+
+</p>
+
+
+<div class="edition-list">
+
+
+<div class="edition">
+
+<h3>
+Skylark Fe
+</h3>
+
+<p>
+
+For devices running
+iOS or iPadOS 15.0
+through 17.7.11.
+
+</p>
+
+<a
+class="button"
+href="https://endlesspete.github.io/Fe/"
+>
+
+View Skylark Fe
+
+</a>
+
+</div>
+
+
+<div class="edition">
+
+<h3>
+Skylark e
+</h3>
+
+<p>
+
+For devices running
+iOS or iPadOS 18.0
+or later.
+
+</p>
+
+<a
+class="button"
+href="https://endlesspete.github.io/16e/#"
+>
+
+View Skylark e
+
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<footer>
+
+© Skylark
+<span id="year"></span>
+
+</footer>
+
+</main>
+
+
+<script>
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
